@@ -58,4 +58,23 @@ module.exports = {
 };
 ```
 
+### Code splitting
+You can put a dependency into a different webpack chunk so that it is loaded on demand rather than at startup.
+
+To do so you just need to pass a chunk name as the second parameter to `moduleName`:
+```js
+let routes = [
+  { /*...*/ moduleId: PLATFORM.moduleName(/*module:*/"users", /*chunk:*/"admin") }
+];
+```
+
+You can do similarly when using `ModuleDependenciesPlugin`:
+```js
+new ModuleDependenciesPlugin({
+  "parent-module": [ { name: "module-dependency", chunk: "chunk-name" } ]
+});
+```
+
+For more information about chunks and code splitting, you can refer to standard webpack documentation.
+
 [[Next: Debugging missing modules|Debugging missing modules]]
