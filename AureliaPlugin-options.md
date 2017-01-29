@@ -61,7 +61,7 @@ If the plugin interferes with your build you can disable it by setting this opti
 If you want a specific PAL module or none at all, you can use this option.
 
 ### `viewsFor: string = "src/**/*.{ts,js}"`
-### viewsExtensions: string | string[] | Function | Function[] = ".html"
+### `viewsExtensions: string | string[] | Function | Function[] = ".html"`
 Aurelia uses conventions to locate views for custom elements or view models.
 If your view model does not have `@noView` or `@useView("...")` or `@inlineView("...")` then Aurelia will just try to load a file with the same name but the extension swapped to `.html`.
 
