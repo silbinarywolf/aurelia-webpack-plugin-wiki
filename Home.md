@@ -3,6 +3,11 @@ This document is a quick introduction to get you started with `aurelia-webpack-p
 ## Prerequisites
 This guide assumes that you have knowledge of building web applications with webpack, nodejs, npm (or yarn) and using the command line. It will not cover those basics but rather focus on how to make Aurelia work along those tools.
 
+To get everything working you'll need recent releases:
+- `aurelia-webpack-loader@2.0.0`
+- `aurelia-pal@1.2.0`
+- `webpack@2.2.0`
+
 ## What's the problem with Aurelia anyway?
 Webpack is a wonderful tool. It transforms and bundles every file that your web application uses.
 
