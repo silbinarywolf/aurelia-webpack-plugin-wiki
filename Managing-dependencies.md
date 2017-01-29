@@ -12,7 +12,7 @@ The build will remove all those calls and just leave the string in its place.
 Here are a few common Aurelia APIs that take module names:
 - Routes `{ moduleId: "xxx" }`
 - `.plugin("xxx")`
-- `.feature("xxx")` ** But see below!**
+- `.feature("xxx")` **But see below!**
 - `.globalResources("xxx")`
 - `@useView("xxx")`
 - `.setRoot("xxx")`
