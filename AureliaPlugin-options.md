@@ -37,6 +37,10 @@ This lets you easily switch the Aurelia distribution that you use. It adds a web
 
 By default it is set to `native-modules`, which is a better choice than `commonjs` because it uses ES `import` and `export`, which support webpack tree-shaking.
 
+### `features: { svg: boolean = true }`
+This lets you remove Aurelia features that you don't use from a minified build. It works simply by defining global free variables with `DefinePlugin`.
+- `svg: false -> FEATURE_NO_SVG = true` saves 20K but bindings on svg elements won't work anymore.
+
 ### `noHtmlLoader: boolean = false`
 By default `AureliaPlugin` adds `html-resources-loader` to `.htm` and `.html` resources.
 This loader detects Aurelia dependencies in views, like `<require from="...">`.
