@@ -9,19 +9,25 @@ Options are simply passed as an object literal to the constructor:
 new AureliaPlugin({ "noHtmlLoader": true })
 ```
 
-### `includeAll: false | string = false`
+### includeAll
+`includeAll: false | string = false`
+
 As will be explained in [[Managing dependencies]], precisely tracing dependencies in your source code requires a bit of instrumentation (namely `PLATFORM.moduleName()` calls).
 
-`includeAll: "src"` is a shortcut that says: just grab everything in folder `src` and include it in the bundle, bypassing the instrumentation requirement. It's a quick, easy way to migrate existing applications. Note that when referring to external dependencies, you still need to wrap them into `PLATFORM.moduleName`, for example in a `.plugin('aurelia-datatable')` as they otherwise won't be in the bundle.
+`includeAll: "src"` is a shortcut that says: just grab everything in folder `src` and include it in the bundle, bypassing the instrumentation requirement. It's a quick, easy way to migrate existing applications. **Note**: when referring to external dependencies, you still need to wrap them into `PLATFORM.moduleName`, for example in a `.plugin('aurelia-datatable')` as they otherwise won't be in the bundle.
 
-### `aureliaApp: string | undefined = "main"`
+### aureliaApp
+`aureliaApp: string | undefined = "main"`
+
 If you start your application with `aurelia-bootstrapper`, your startup module is probably in a `aurelia-app` attribute in your main HTML file. Because this file is generally not parsed by webpack, this initial dependency is lost.
 
 That's why `AureliaPlugin` adds `aureliaApp` as a dependency to your entry point. By default it adds `main` but you can change it to another name like `app` or `index`.
 
 If you have different startup code that doesn't require this initial dependency, you can remove it with `aureliaApp: undefined`.
 
-### `aureliaConfig: string | string[] | undefined = ["standard", "developpmentLogging"]`
+### aureliaConfig
+`aureliaConfig: string | string[] | undefined = ["standard", "developpmentLogging"]`
+
 When starting an Aurelia app, you commonly call `aurelia.use.standardConfig()` and co. to enable the core default services.
 
 This option makes sure all those services are dependencies of `aurelia-framework`. By default it includes everything, so that it just works.
@@ -32,16 +38,30 @@ If you don't use everything you can trim down your build by specifying what you 
 "standard", "basic"
 ```
 
-### `dist: string | undefined = "native-modules"`
+### dist
+`dist: string | undefined = "native-modules"`
+
 This lets you easily switch the Aurelia distribution that you use. It adds a webpack resolver that tries to substitute `dist/xxx/` with `dist/[dist option]/` when resolving modules.
 
 By default it is set to `native-modules`, which is a better choice than `commonjs` because it uses ES `import` and `export`, which support webpack tree-shaking.
 
-### `features: { svg: boolean = true }`
-This lets you remove Aurelia features that you don't use from a minified build. It works simply by defining global free variables with `DefinePlugin`.
-- `svg: false -> FEATURE_NO_SVG = true` saves 20K but bindings on svg elements won't work anymore.
+### features
+```
+features: { 
+  svg: boolean = true;
+  unparser: boolean = true;
+  polyfills: "es2015" | "es2016" | "esnext" | "none" = "es2015";
+}
+```
 
-### `noHtmlLoader: boolean = false`
+This lets you remove Aurelia features that you don't use from a minified build. It works simply by defining free global variables with `DefinePlugin`.
+- `svg: false -> FEATURE_NO_SVG = true` saves 20K but bindings on svg elements won't work anymore.
+- `unparser: false -> FEATURE_NO_UNPARSER = true` saves 2K by removing a debugging feature that prints expression AST back into strings. **Caution**: this is currently used by `aurelia-validation`, if you use it don't set this to `false`. See aurelia/validation#412.
+- `polyfills -> FEATURE_NO_ES5, FEATURE_NO_ES6, FEATURE_NO_ESNEXT` saves around 10K when set to `esnext`. You can use this to remove Aurelia's own polyfills if you don't need them (e.g. when targeting modern browsers or when providing your own polyfills). **Note**: the features required by Aurelia are listed on https://github.com/aurelia/polyfills.
+
+### noHtmlLoader
+`noHtmlLoader: boolean = false`
+
 By default `AureliaPlugin` adds `html-resources-loader` to `.htm` and `.html` resources.
 This loader detects Aurelia dependencies in views, like `<require from="...">`.
 
@@ -49,7 +69,9 @@ If the loader interferes with your build you can disable it by setting this opti
 
 Note that if you don't use HTML views but another markup, you need to manually add `html-resources-loader` to your build.
 
-### `noModulePathResolve: boolean = false`
+### noModulePathResolve
+`noModulePathResolve: boolean = false`
+
 This modules enables you to reference to files inside a package that might no be at the root.
 
 For example, a library `aurelia-chart` might actually resolve to `aurelia-chart/dist/index.js`.
@@ -59,13 +81,17 @@ Thanks to that plugin the example `aurelia-chart/pie` would work and resolve to 
 
 If the plugin interferes with your build you can disable it by setting this option to `true`.
 
-### `pal: string | undefined`
+### pal
+`pal: string | undefined`
+
 `AureliaPlugin` automatically bundles the correct `aurelia-pal-***` platform abstraction layer based on your webpack config `target`.
 
 If you want a specific PAL module or none at all, you can use this option.
 
-### `viewsFor: string = "src/**/*.{ts,js}"`
-### `viewsExtensions: string | string[] | Function | Function[] = ".html"`
+### viewFor and viewExtensions
+`viewsFor: string = "src/**/*.{ts,js}"`
+`viewsExtensions: string | string[] | Function | Function[] = ".html"`
+
 Aurelia uses conventions to locate views for custom elements or view models.
 If your view model does not have `@noView` or `@useView("...")` or `@inlineView("...")` then Aurelia will just try to load a file with the same name but the extension swapped to `.html`.
 
