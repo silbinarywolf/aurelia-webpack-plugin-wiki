@@ -67,7 +67,12 @@ This loader detects Aurelia dependencies in views, like `<require from="...">`.
 
 If the loader interferes with your build you can disable it by setting this option to `true`.
 
-Note that if you don't use HTML views but another markup, you need to manually add `html-resources-loader` to your build.
+Note that if you don't use HTML views but another markup language, you need to manually add `html-resources-loader` to your default loaders at the right place (after your templating loader and before `html-loader`, so that `html-resources-loader` can consume HTML).
+
+**If you use `HtmlWebpackPlugin`**, which creates static html files to load your app, you should note that this adds a loader for all `.html` files. It means that if you specify a template like `new HtmlWebpackPlugin({ template: 'index.html' })`, it will prevent the fallback ejs loader to kick in (see [HtmlWebpackPlugin docs](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md)). There are several workarounds:
+- use a different file extension like `index.ejs`.
+- specify the loader you want explicitely, maybe prefixing with `!` (which disables default loaders): `{ template: '!raw-loader!index.html' }`
+- set `noHtmlLoader: true` and manually use `html-resources-loader` with a more specific `test`.
 
 ### noModulePathResolve
 `noModulePathResolve: boolean = false`
