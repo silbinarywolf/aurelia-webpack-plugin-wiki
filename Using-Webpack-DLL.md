@@ -81,3 +81,12 @@ module.exports = {
   ]
 };
 ```
+
+## Can I use this to bundle my Aurelia lib? 
+No, probably not.
+
+Webpack libraries are best distributed in one file per module format -- ideally ES modules using `import/export` even if the code targets ES5, as only ES modules support tree-shaking.
+
+There are two reasons for that:
+- as explained above, DLLs prevent several Webpack optimizations and users may value that.
+- more importantly, your library probably has dependencies on Aurelia. It means that some Aurelia modules will be embedded into your library DLL. Now imagine another library doing the same thing. At runtime an application would have multiple instances of Aurelia modules and most probably won't work properly.
