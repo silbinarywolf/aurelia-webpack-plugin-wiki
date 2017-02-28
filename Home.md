@@ -9,7 +9,8 @@ This repo also contains various demos projects that build and run.
 [All `AureliaPlugin` options](AureliaPlugin options)
 
 ## Troubleshooting
-TODO
+[Some modules are not found at runtime](Debugging missing modules)
+[HtmlWebpackPlugin problems](HtmlWebpackPlugin)
 
 ## Advanced topics
 TODO
