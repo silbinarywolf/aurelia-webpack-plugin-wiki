@@ -81,7 +81,7 @@ Note that if you don't use HTML views but another markup language, you need to m
 
 **If you use `HtmlWebpackPlugin`**, which creates static html files to load your app, you should note that this adds a loader for all `.html` files. It means that if you specify a template like `new HtmlWebpackPlugin({ template: 'index.html' })`, it will prevent the fallback ejs loader to kick in (see [HtmlWebpackPlugin docs](https://github.com/jantimon/html-webpack-plugin/blob/master/docs/template-option.md)). There are several workarounds:
 - use a different file extension like `index.ejs`.
-- specify the loader you want explicitely, maybe prefixing with `!` (which disables default loaders): `{ template: '!raw-loader!index.html' }`
+- specify the loader you want explicitely, maybe prefixing with `!` (which disables default loaders): `{ template: '!html-webpack-plugin/lib/loader!index.html' }`
 - set `noHtmlLoader: true` and manually use `html-resources-loader` with a more specific `test`.
 
 ### noModulePathResolve
