@@ -19,9 +19,8 @@ Here are a few common Aurelia APIs that take module names:
 
 All of those must be wrapped inside `PLATFORM.moduleName("xxx")`.
 
-> `.feature("xxx")` is currently tricky, because it doesn't take a module name but its parent folder and works by appending `/index`. At the moment, to work around it you can put a standalone `moduleName` next to it like so:
+> Until version 1.1.0, `.feature("xxx")` was tricky because it didn't take a module name but its parent folder and works by appending `/index` internally. Be sure to use `aurelia-framework@1.1.0` or later, so that you can add the `/index` like so:
 ```js
-aurelia.feature("controls");
 PLATFORM.moduleName("controls/index");
 ```
 
