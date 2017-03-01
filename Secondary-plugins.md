@@ -6,7 +6,7 @@ All those "other" plugins that actually do stuff are also exported by `aurelia-w
 Here's a list of the ones you are likely to use.
 
 ## ModuleDependenciesPlugin
-`new ModuleDependenciesPlugin({ [module: string]: string|DependencyEx[] })`
+`new ModuleDependenciesPlugin({ [module: string]: (string | DependencyEx)[] })`
 
 This plugin lets you add dynamic dependencies between modules that are not found in code.
 Each key is the parent module and each value is the list of modules that it depends on.
