@@ -8,7 +8,7 @@ This repo also contains various demos projects that build and run.
 ## Reference
 [All `AureliaPlugin` options](AureliaPlugin options)
 
-TODO: useful plugins found in `aurelia-webpack-plugin`
+[Other plugins that might be useful](Secondary plugins)
 
 ## Troubleshooting
 [Some modules are not found at runtime](Debugging missing modules)
