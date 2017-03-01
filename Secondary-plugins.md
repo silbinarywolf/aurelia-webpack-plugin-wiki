@@ -31,7 +31,7 @@ You can of course add additional `ConventionDependenciesPlugin` instances if you
 ## GlobDependenciesPlugin
 `new GlobDependenciesPlugin({ [module: string]: string | string[] })`
 
-This module is similar to `ModuleDependenciesPlugin` above, but instead of adding specific dependencies to a module, it adds every file that match one (or several) Globs.
+This module is similar to `ModuleDependenciesPlugin` above, but instead of adding specific dependencies to a module, it adds every file that matches one (or several) Globs.
 **Note that globs are evaluated relative to your webpack config location.**
 
 This is what `AureliaPlugin` uses to implement its [`includeAll` option](https://github.com/jods4/aurelia-webpack-build/wiki/AureliaPlugin-options#includeall).
