@@ -21,7 +21,7 @@ All of those must be wrapped inside `PLATFORM.moduleName("xxx")`.
 
 > Until version 1.1.0, `.feature("xxx")` was tricky because it didn't take a module name but its parent folder and works by appending `/index` internally. Be sure to use `aurelia-framework@1.1.0` or later, so that you can add the `/index` like so:
 ```js
-PLATFORM.moduleName("controls/index");
+use.feature(PLATFORM.moduleName("controls/index"));
 ```
 
 ### HTML dependencies 
