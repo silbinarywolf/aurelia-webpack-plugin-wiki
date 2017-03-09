@@ -2,7 +2,6 @@ Here's what a typical `webpack.config.js` looks like for an Aurelia project:
 ```js
 const path = require("path");
 const { AureliaPlugin } = require("aurelia-webpack-plugin");
-const coreDeps = require("aurelia-core-dependencies");
 
 module.exports = {
   entry: { "main": "aurelia-bootstrapper" },  // (1)
@@ -29,7 +28,6 @@ module.exports = {
 
   plugins: [
     new AureliaPlugin(),                       // (5)
-    coreDeps,                                  // (6)
   ],
 };
 ```
@@ -82,8 +80,5 @@ The plugin assumes a few default options that may not be right for your project.
 ```js
 new AureliaPlugin({ aureliaApp: "app", dist: "commonjs" })
 ```
-
-### (6) Aurelia-Core-Dependencies
-This is a temporary plugin that defines internal Aurelia dependencies. It won't be necessary once the published Aurelia release defines these dependencies itself. Just use it for now.
 
 [[Next: let's review AureliaPlugin's options|AureliaPlugin options]]
