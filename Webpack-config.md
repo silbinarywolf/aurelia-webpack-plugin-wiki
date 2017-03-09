@@ -71,6 +71,8 @@ But `module` is also used by `AureliaPlugin` as the list of root folders to use 
 ### (4) Module
 The example is the standard webpack config to use LESS, Typescript and HTML. None of those are requirements, you can change this to anything you want.
 
+Note that if you import your CSS with `<require>` you don't want `style-loader` in there. See [this page](CSS doesn't load) for detailed explanations.
+
 If you don't use HTML source files for your views, there is one catch that you need to be aware of. As will be explained later, `AureliaPlugin` adds a loader for all HTML files to analyze them and detect their dependencies (for example local resources imported with `<require from="...">` tags). If you don't use HTML sources, you'll need to add `html-resource-loader` manually for your views.
 
 ### (5) Aurelia Plugin
