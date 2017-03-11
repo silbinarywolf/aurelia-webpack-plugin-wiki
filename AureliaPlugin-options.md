@@ -58,6 +58,7 @@ Note that this option expects an _entry_ name, not a _module_ name.
 ### features
 ```
 features: { 
+  ie: boolean = true;
   svg: boolean = true;
   unparser: boolean = true;
   polyfills: "es2015" | "es2016" | "esnext" | "none" = "es2015";
@@ -65,6 +66,7 @@ features: {
 ```
 
 This lets you remove Aurelia features that you don't use from a minified build. It works simply by defining free global variables with `DefinePlugin`.
+- `ie: false -> FEATURE_NO_IE = true` saves 4K by removing IE support from `aurelia-pal-browser`.
 - `svg: false -> FEATURE_NO_SVG = true` saves 20K but bindings on svg elements won't work anymore.
 - `unparser: false -> FEATURE_NO_UNPARSER = true` saves 2K by removing a debugging feature that prints expression AST back into strings. **Caution**: this is currently used by `aurelia-validation`, if you use it don't set this to `false`. See aurelia/validation#412.
 - `polyfills -> FEATURE_NO_ES5, FEATURE_NO_ES6, FEATURE_NO_ESNEXT` saves around 10K when set to `esnext`. You can use this to remove Aurelia's own polyfills if you don't need them (e.g. when targeting modern browsers or when providing your own polyfills). **Note**: the features required by Aurelia are listed on https://github.com/aurelia/polyfills.
