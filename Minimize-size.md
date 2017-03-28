@@ -42,7 +42,7 @@ By default, `AureliaPlugin` assumes you'll use everything as well and adds all t
 
 _If you build a small page or simple app that doesn't use all of them_:
 - don't call `standardConfiguration()`, there are other methods for each module that you actually use.
-- reflect that configuration by passing [`aureliaConfig`](https://github.com/jods4/aurelia-webpack-build/wiki/AureliaPlugin-options#aureliaconfig) to `AureliaPlugin`.
+- reflect that configuration by passing [`aureliaConfig`](https://github.com/aurelia/webpack-plugin/wiki/AureliaPlugin-options#aureliaconfig) to `AureliaPlugin`.
 
 ## Remove seldom used features
 Aurelia contains a few feature that are rarely used, for example binding SVG properties (20K of minified code).
@@ -52,4 +52,4 @@ If the browsers you support are all ES5 or even ES6 compliant, you can reduce th
 Another common scenario is that you already include your own polyfills (e.g. based on `core-js`) and Aurelia's own polyfills are redundant, in which case they can be totally removed (saves around 10K of minified code).
 
 _If you don't use some features_, when building with Webpack you can drop the related code:
-- Use the [features](https://github.com/jods4/aurelia-webpack-build/wiki/AureliaPlugin-options#features) `AureliaPlugin` option to remove unused features.
+- Use the [features](https://github.com/aurelia/webpack-plugin/wiki/AureliaPlugin-options#features) `AureliaPlugin` option to remove unused features.
