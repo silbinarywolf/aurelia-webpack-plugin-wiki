@@ -31,4 +31,3 @@ When migrating projects that used previous versions of Aurelia and `aurelia-webp
 - If things inexplicably don't work as they are supposed to, try to completely delete your compilation output and your `node_modules`, then install anew.
 
 That last advice may seem random and ineffective but we've seen several people mysteriously fixing their issues by completely reinstalling `node_modules` from scratch. NPM can get messy at times.
-trying to get those links working 😭 
