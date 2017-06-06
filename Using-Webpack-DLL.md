@@ -31,7 +31,8 @@ Be sure to reference optional modules like `aurelia-router` and 3rd party librar
 
 You should always have a look at the contents of your main bundle. If a module was not picked in `vendor.js`, add it to the entries! **`aurelia-loader-webpack` must be in your main bundle**. This is taken care of by `AureliaPlugin`, just make sure not to add it explicitly as a vendor entry.
 
-Because your application isn't in this bundle, be sure to pass `aureliaApp: undefined` to `AureliaPlugin`.
+> **Before 2.0 RC3**
+> Because your application isn't in this bundle, be sure to pass `aureliaApp: undefined` to `AureliaPlugin`.
 
 In the end, your webpack configuration should be the same as your main one, with the following exceptions:
 ```js
@@ -56,9 +57,7 @@ module.exports = {
       path: path.resolve("dist", "[name]-manifest.json"),
       name: "[name]_[hash]",
     }),
-    new AureliaPlugin({
-      aureliaApp: undefined,
-    }),
+    new AureliaPlugin(),
   ],
 };
 ```
@@ -66,7 +65,8 @@ module.exports = {
 You can specify a specific config by running
 `webpack --config webpack.config.vendor.js`
 
-> **Until the next version of `aurelia-bootstrapper` (after 2.0.1), you need to manually remove `aurelia-loader-webpack` from the manifest JSON file before compiling your main app.** Otherwise the application will fail to run with some "module not found" errors, typically your `main` entry point.
+> **Before `aurelia-bootstrapper` v2.0.1**
+> You need to manually remove `aurelia-loader-webpack` from the manifest JSON file before compiling your main app. Otherwise the application will fail to run with some "module not found" errors, typically your `main` entry point.
 
 ### Main bundle
 Your main webpack configuration is really the same as usual, except for the inclusion of `DllReferencePlugin`:

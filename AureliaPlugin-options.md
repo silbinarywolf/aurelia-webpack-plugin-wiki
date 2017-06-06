@@ -25,6 +25,9 @@ That's why `AureliaPlugin` adds `aureliaApp` as a dependency to your entry point
 
 If you have different startup code that doesn't require this initial dependency, you can remove it with `aureliaApp: undefined`.
 
+Note that if a Webpack `DllPlugin` is detected, no default value is set. 
+This is because a DLL typically doesn't include your app entry point.
+
 ### aureliaConfig
 `aureliaConfig: string | string[] | undefined = ["standard", "developpmentLogging"]`
 
