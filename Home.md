@@ -15,6 +15,8 @@ This repo also contains various demos projects that build and run.
 
 [Minimize size](Minimize-size)
 
+[Polyfills and Internet Explorer](Polyfills)
+
 ## Troubleshooting
 [Some modules are not found at runtime](Debugging-missing-modules)
 
