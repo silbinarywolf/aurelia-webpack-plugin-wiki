@@ -24,6 +24,26 @@ All of those must be wrapped inside `PLATFORM.moduleName("xxx")`.
 use.feature(PLATFORM.moduleName("controls/index"));
 ```
 
+#### How it works
+`PLATFORM.moduleName` is statically analyzed by `aurelia-webpack-plugin` at compile time to create additional dependencies in your Webpack dependency graph, using the string passed to `moduleName` as a module name.
+
+Hence, you have to use string literals. Following example won't work:
+```js
+// Don't do that!
+let moduleName = 'my-resource';
+// That will not be resolved statically and fail at runtime because your resource was not included in bundle
+aurelia.use.globalResources(PLATFORM.moduleName(moduleName));
+```
+
+You can wrap any literal string, though, so the following variation does work. 
+It can be useful when using dynamic views (with `<compose>`) and other similar situations where you want to pass a variable to Aurelia.
+Just make sure the literal string representing module name is properly enclosed in a call to `moduleName`.
+```js
+// This works:
+let moduleName = PLATFORM.moduleName('my-resource');
+aurelia.use.globalResources(moduleName);
+```
+
 ### HTML dependencies 
 A few Aurelia tags can dynamically load modules, like:
 - `<require from=...>`
