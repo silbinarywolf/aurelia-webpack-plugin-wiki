@@ -53,7 +53,7 @@ By default it is set to `native-modules`, which is a better choice than `commonj
 
 Aurelia sometimes needs to add dependencies that are not attached to a particular module, e.g. when you use `includeAll`, `aureliaApp` or `DLLReferencePlugin`. It also automatically adds `aurelia-loader-webpack` to your entry.
 
-For all those things, `AureliaPlugin` adds them to your webpack entry point. If you have multiple entry points, it adds them to the first one.
+For all those things, `AureliaPlugin` adds them to all of your webpack entry points.
 
 If you need to change that behavior, you can use this option to specify which entry point(s) `AureliaPlugin` should target. 
 Note that this option expects an _entry_ name, not a _module_ name.
